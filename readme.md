@@ -5,9 +5,10 @@ You define what your users are, the package provide basic functionality.
 
 ## How to install
 1. Copy files to your packages folder.
-2. Import the `smartauth/schema.sql` (for MySQL) file to your database, or if you are using Oil run the following command:
+2. Copy the `smartauth/config/smartauth.php` file to your `app/config` folder and edit value according to your needs.
+3. Run the following command:
 `$ php oil r migrate --packages=smartauth`
-3. Copy the `smartauth/config/smartauth.php` file to your `app/config` folder and edit value according to your needs.
+or if you are not using oil, import the `smartauth/schema.sql` (for MySQL) file to your database.
 
 ## Current features:
 * Basic authentication
