@@ -18,7 +18,7 @@ class Create_users {
 		$fields[$username]   = array('constraint' => 255, 'type' => 'varchar');
 		$fields[$password]   = array('constraint' => 255, 'type' => 'varchar');
 		$fields[$email]      = array('constraint' => 255, 'type' => 'varchar');
-		if (\Config::get('smartauth.features.password_salting.active') == true)
+		if (\Config::get('smartauth.features.password_salting.active') == true and \Config::get('smartauth.features.password_salting.user_based') == true)
 		{
 			$salt       = \Config::get('smartauth.user.salt');
 			$fields[$salt]       = array('constraint' => 255, 'type' => 'varchar');

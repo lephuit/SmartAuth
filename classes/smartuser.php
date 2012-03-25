@@ -86,13 +86,18 @@ class SmartUser
 		// if (password_salting is active): generate salt then hash password;
 		if (\Config::get('smartauth.features.password_salting.active') === true)
 		{
-			$user->{\Config::get('smartauth.user.salt')} = \Str::random('sha1');
-			$user->{\Config::get('smartauth.user.password')} = static::hash($user->{\Config::get('smartauth.user.password')}, $user->salt);
-		}
-		// else: hash password without salt
-		else
-		{
-			$user->{\Config::get('smartauth.user.password')} = static::hash($user->{\Config::get('smartauth.user.password')}, \Config::get('smartauth.password_hash'));
+			// if (user_based salts is active): generate salt then hash password
+			if (\Config::get('smartauth.features.password_salting.user_based') === true)
+			{
+				$user->{\Config::get('smartauth.user.salt')} = \Str::random('sha1');
+				$user->{\Config::get('smartauth.user.password')} = static::hash($user->{\Config::get('smartauth.user.password')}, $user->salt);
+			}
+			// else: hash password with global salt
+			else
+			{
+				$user->{\Config::get('smartauth.user.password')} = static::hash($user->{\Config::get('smartauth.user.password')}, \Config::get('smartauth.features.password_salting.salt'));
+			}
+
 		}
 		
 		if ($user->save())
@@ -293,6 +298,17 @@ class SmartUser
 		return true;
 	}
 
+	
+	/**
+	 * Check if the password matches the complexity set in config file
+	 */
+	protected static function check_password($password)
+	{
+		$rules = \Config::get('smartauth.password');
+		
+		
+		return false;
+	}
 	/**
 	 * Default hash method
 	 *
