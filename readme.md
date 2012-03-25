@@ -5,23 +5,23 @@ You define what your users are, the package provide basic functionality.
 
 ## How to install
 1. Copy files to your packages folder.
-2. Copy the `smartauth/config/smartauth.php` file to your `app/config` folder and edit value according to your needs.
+2. Copy the `smartauth/config/smartauth.php` file to your `app/config` folder and edit values according to your needs.
 3. Run the following command:
 `$ php oil r migrate --packages=smartauth`
 or if you are not using oil, import the `smartauth/schema.sql` (for MySQL) file to your database.
 
 ## Current features:
 * Basic authentication
+* Cookie login (remember me)
 * Group functionality (with group nesting)
 * Authorization (via user/group roles)
 * Different password hash/user
-* I18n support (using `Lang` class)
 
-## TODO
-* Cookie login (remember me)
+## TODO features
 * Email activation
 * Password reset
-* Full documentation
+* Minimum password complexity
+* Forced periodical password change
 * Brute-force prevention measurements
 
 ## Change log
